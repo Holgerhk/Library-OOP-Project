@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.book-container {
+    width: 1608px;
+    margin-top: 176px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.book {
+    width: 321px;
+    height: 473px;
+    background-color: #564E87;
+    border-radius: 22px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 20.01%;
+    margin-bottom: 70px;
+}
+
+.book h3 {
+    font-size: 22px;
+    color: #fff;
+    margin: 14px 0 7px 0;
+    width: 285px;
+    font-weight: 400;
+}
+
+.book img {
+    width: 285px;
+    height: 100%;
+    border-radius: 19px;
+    object-fit: cover;
+    object-position: 0 0%;
+}
+
+.img-container {
+    max-height: 381px;
+    transition: max-height 0.15s ease;
+    z-index: 2;
+}
+
+.book:hover {
+    .img-container {
+        max-height: 246px;
+    }
+}
+
+/* info box */
+
+.info {
+    position: absolute;
+    z-index: 1;
+    bottom: 17px;
+    left: 20px;
+    height: 113px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info p {
+    margin: 0;
+    color: #fff;
+}
+
+.info span {
+    background-color: #fff;
+    color: #564E87;
+    border-radius: 9px;
+    font-size: 15px;
+    padding: 1px 10px;
+    margin-left: 5px;
+}
+
+.gerne-container {
+    display: flex;
+
+}
+
+.span-container span:nth-child(-n + 2) {
+    margin-bottom: 8px;
+}
+
+.span-container {
+    width: 222px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.lastP p {
+    margin-top: 8px;
+}
+
+/* Library Btn */
+
+.library-btn {
+    position: fixed;
+    width: 238px;
+    height: 75px;
+    background-color: #E05A5A;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    top: 54px;
+    right: 148px;
+    z-index: 4;
+}
+
+.library-btn:hover {
+    transition: transform 0.05s ease;
+    transform: scale(1.1);
+}
+
+.library-btn p {
+    margin: 0;
+    font-size: 32px;
+}
+
+.library-btn img {
+    width: 41px;
+    height: 41px;
+}
+
+.library-btn div {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.library-btn div p {
+    margin: 0;
+    font-size: 22px;
+    color: #E05A5A;
+}
+
+.blur {
+    backdrop-filter: blur(5px);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 3;
+}
