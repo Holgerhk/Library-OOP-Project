@@ -1,6 +1,7 @@
 // class BookItem handle single item
 // class BookList handle list of books
 // class Library handle the library
+// test
 const bookContainer = document.querySelector(".book-container");
 class BookItem {
     constructor(author, title, gerne, pageNr, publisher, imgUrl) {
