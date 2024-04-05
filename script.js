@@ -17,7 +17,7 @@ class BookItem {
     render() {
         let str = ""
         str = `
-        <div class="book" style="background-color: #${this.backColor}; box-shadow: 10px 10px 30px 5px #${this.backColor};">
+        <div id="book${this.id}" class="book" style="background-color: #${this.backColor}; box-shadow: 10px 10px 30px 5px #${this.backColor};">
             <h3>${this.author}: ${this.title}</h3>
             <div class="img-container">
                 <img src="${this.imgUrl}" alt="">
@@ -39,6 +39,10 @@ class BookItem {
         </div>
         `;
         return str;
+    }
+
+    addToLibrary() {
+        console.log(this.id);
     }
 }
 
@@ -149,11 +153,13 @@ class BookList {
 const bookList = new BookList();
 bookContainer.innerHTML = bookList.render();
 document.querySelectorAll(".book").forEach(book => {
-    console.log(book.firstElementChild.clientHeight);
     if (book.firstElementChild.clientHeight === 27) {
         book.firstElementChild.nextElementSibling.style.maxHeight = "410px";
     }
 });
 
+bookList.books.forEach(book => {
+    document.querySelector("#book" + book.id).addEventListener("click", book.addToLibrary.bind(book));
 
+});
 // onload="this.style.height = (400 - this.parentElement.previousElementSibling.getBoundingClientRect().height) + 'px'"
