@@ -24,7 +24,6 @@ body {
 .book {
     width: 321px;
     height: 473px;
-    background-color: #564E87;
     border-radius: 22px;
     position: relative;
     display: flex;
@@ -58,7 +57,7 @@ body {
 
 .book:hover {
     .img-container {
-        max-height: 246px;
+        max-height: 246px !important;
     }
 }
 

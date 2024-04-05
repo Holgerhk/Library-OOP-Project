@@ -4,21 +4,23 @@
 // test
 const bookContainer = document.querySelector(".book-container");
 class BookItem {
-    constructor(author, title, gerne, pageNr, publisher, imgUrl) {
+    constructor(author, title, gerne, pageNr, publisher, imgUrl, backColor, id) {
         this.author = author;
         this.title = title;
         this.gerne = gerne.split(",");
         this.pageNr = pageNr;
         this.publisher = publisher;
         this.imgUrl = imgUrl;
+        this.backColor = backColor;
+        this.id = id;
     }
     render() {
         let str = ""
         str = `
-        <div class="book">
+        <div class="book" style="background-color: #${this.backColor}; box-shadow: 10px 10px 30px 5px #${this.backColor};">
             <h3>${this.author}: ${this.title}</h3>
             <div class="img-container">
-                <img src="${this.imgUrl}" style="height: ${this.getImgHeight()};" alt="">
+                <img src="${this.imgUrl}" alt="">
             </div>
             <div class="info">
                 <div class="gerne-container">
@@ -38,10 +40,6 @@ class BookItem {
         `;
         return str;
     }
-
-    getImgHeight() {
-        
-    }
 }
 
 class BookList {
@@ -52,7 +50,9 @@ class BookList {
             "Fantasy,Fiction,High Fantasy",
             400,
             "Gollancz",
-            "Images/last wish.jpg"
+            "Images/last wish.jpg",
+            "882322",
+            1
         ),
         new BookItem(
             "Brandon Sanderson",
@@ -60,7 +60,9 @@ class BookList {
             "Fantasy,Fiction,High Fantasy",
             650,
             "Gollancz",
-            "Images/final empire.jpg"
+            "Images/final empire.jpg",
+            "564E87",
+            2
         ),
         new BookItem(
             "Robin Hobb",
@@ -68,7 +70,9 @@ class BookList {
             "Fantasy,Fiction,High Fantasy",
             400,
             "Harper Voyager",
-            "Images/assassins apprentice.jpg"
+            "Images/assassins apprentice.jpg",
+            "3E5DA0",
+            3
         ),
         new BookItem(
             "Stephen King",
@@ -76,7 +80,9 @@ class BookList {
             "Horror,Fiction,Classic",
             497,
             "Hodder",
-            "Images/shining.jpg"
+            "Images/shining.jpg",
+            "32984E",
+            4
         ),
         new BookItem(
             "Neil Gaiman",
@@ -84,7 +90,9 @@ class BookList {
             "Fantasy,Fiction,Mythology",
             279,
             "Bloomsbury",
-            "Images/norse.jpg"
+            "Images/norse.jpg",
+            "8E6F33",
+            5
         ),
         new BookItem(
             "James Patterson",
@@ -92,7 +100,9 @@ class BookList {
             "Mystery,Fiction,Thriller",
             424,
             "Grand Central",
-            "Images/1st to die.jpg"
+            "Images/1st to die.jpg",
+            "F4483A",
+            6
         ),
         new BookItem(
             "Stephen Fry",
@@ -100,7 +110,9 @@ class BookList {
             "Mytholgy,Nonfiction,History",
             415,
             "Penguin Books",
-            "Images/heroes.jpg"
+            "Images/heroes.jpg",
+            "7A7A7A",
+            7
         ),
         new BookItem(
             "James Clear",
@@ -108,7 +120,9 @@ class BookList {
             "Self Help,Nonfiction,Psychology",
             319,
             "Avery",
-            "Images/habits.jpg"
+            "Images/habits.jpg",
+            "DDAD86",
+            8
         ),
         new BookItem(
             "Jason Fung",
@@ -116,7 +130,9 @@ class BookList {
             "Self Help,Nonfiction,Health",
             315,
             "Greystone Books",
-            "Images/code.jpg"
+            "Images/code.jpg",
+            "C71C2E",
+            9
         )
     ];
 
@@ -132,3 +148,12 @@ class BookList {
 
 const bookList = new BookList();
 bookContainer.innerHTML = bookList.render();
+document.querySelectorAll(".book").forEach(book => {
+    console.log(book.firstElementChild.clientHeight);
+    if (book.firstElementChild.clientHeight === 27) {
+        book.firstElementChild.nextElementSibling.style.maxHeight = "410px";
+    }
+});
+
+
+// onload="this.style.height = (400 - this.parentElement.previousElementSibling.getBoundingClientRect().height) + 'px'"
