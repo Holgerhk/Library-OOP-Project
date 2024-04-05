@@ -165,3 +165,110 @@ body {
 .blur.active {
     display: block;
 }
+
+/* library */
+
+.library-container {
+    position: absolute;
+    width: 1376px;
+    height: 768px;
+    background-color: #E05A5A;
+    left: 272px;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 5;
+}
+
+.library-books {
+    overflow: auto;
+    background-color: #fff;
+    padding: 41px 50px;
+    width: 1192px;
+    height: 517px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.library-book {
+    width: 100%;
+    height: 167px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 23px;
+}
+
+.library-book p {
+    margin: 0;
+}
+
+.library-books div:first-of-type {
+    margin: 0;
+}
+
+.library-book img:first-of-type {
+    height: 100%;
+}
+
+.library-book img:last-of-type {
+    height: 58px;
+}
+
+.library-info {
+    height: 100%;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 22px;
+}
+
+.library-gernes {
+    font-size: 22px;
+    align-self: flex-start;
+    margin-top: 15px;
+}
+
+.library-gernes div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 258px;
+    justify-content: space-between;
+}
+
+.library-gernes div span {
+    background-color: #E05A5A;
+    padding: 2px 8px;
+    border-radius: 8px;
+    margin-top: 6px;
+    color: #fff;
+}
+
+.library-gernes div span:last-of-type {
+    margin-top: 10px;
+}
+
+/* loan-btn */
+
+.bottom-container {
+    background-color: #564E87;
+    display: flex;
+}
+
+.loan-btn {
+    background-color: #fff;
+    border: none;
+    color: #E05A5A;
+    padding: 10px 60px;
+    font-size: 25px;
+}
+
+.bottom-container p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 25px;
+}

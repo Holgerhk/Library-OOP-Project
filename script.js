@@ -157,7 +157,7 @@ class BookList {
     openLibrary() {
         console.log(bookList.loanBooks);
         if (!blur.classList.contains("active")) {
-            blur.className = "active";
+            console.log("yes!");
         }
     }
 }
