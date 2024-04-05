@@ -180,6 +180,7 @@ body {
     align-items: center;
     justify-content: space-around;
     z-index: 5;
+    display: none;
 }
 
 .library-books {
@@ -190,7 +191,7 @@ body {
     height: 517px;
     display: flex;
     flex-direction: column;
-    
+    margin-top: 70px;
 }
 
 .library-book {
@@ -255,20 +256,22 @@ body {
 /* loan-btn */
 
 .bottom-container {
-    background-color: #564E87;
     display: flex;
+    align-items: center;
 }
 
 .loan-btn {
     background-color: #fff;
     border: none;
     color: #E05A5A;
-    padding: 10px 60px;
+    padding: 15px 60px;
     font-size: 25px;
+    margin-left: 30px;
 }
 
-.bottom-container p {
+.bottom-container h4 {
     margin: 0;
     font-weight: 400;
     font-size: 25px;
+    color: #fff;
 }

@@ -2,7 +2,7 @@ let libraryIdx = 0;
 const libraryBtn = document.querySelector(".library-btn");
 libraryBtn.lastElementChild.firstElementChild.innerText = libraryIdx;
 const blurContainer = document.querySelector(".blur");
-
+const libraryContainer = document.querySelector(".library-container");
 
 const bookContainer = document.querySelector(".book-container");
 class BookItem {
@@ -156,9 +156,10 @@ class BookList {
 
     openLibrary() {
         console.log(bookList.loanBooks);
-        if (!blur.classList.contains("active")) {
-            console.log("yes!");
+        if (!blurContainer.classList.contains("active")) {
+            blurContainer.classList.add("active");
         }
+        libraryContainer.style.display = "flex";
     }
 }
 
