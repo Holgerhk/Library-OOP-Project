@@ -3,6 +3,8 @@ const libraryBtn = document.querySelector(".library-btn");
 libraryBtn.lastElementChild.firstElementChild.innerText = libraryIdx;
 const blurContainer = document.querySelector(".blur");
 const libraryContainer = document.querySelector(".library-container");
+const libraryBookContainer = document.querySelector(".library-books");
+
 
 const bookContainer = document.querySelector(".book-container");
 class BookItem {
@@ -16,6 +18,7 @@ class BookItem {
         this.backColor = backColor;
         this.id = id;
     }
+
     render() {
         let str = ""
         str = `
@@ -46,7 +49,7 @@ class BookItem {
     addToLibrary() {
         libraryIdx = libraryIdx + 1;
         libraryBtn.lastElementChild.firstElementChild.innerText = libraryIdx;
-        bookList.loanBooks.push(this.id)
+        bookList.loanBooks.push(this)
     }
 }
 
@@ -143,6 +146,7 @@ class BookList {
             9
         )
     ];
+    loanBooks = [];
 
     render() {
         let str = "";
@@ -152,14 +156,39 @@ class BookList {
         return str;
     }
 
-    loanBooks = [];
-
     openLibrary() {
         console.log(bookList.loanBooks);
         if (!blurContainer.classList.contains("active")) {
             blurContainer.classList.add("active");
         }
         libraryContainer.style.display = "flex";
+        bookList.loanBooks.forEach(e => {
+            libraryBookContainer.append(bookList.fetchBookHTML(e));
+        });
+    }
+
+    fetchBookHTML(book) {
+        let el = document.createElement("div");
+        el.classList.add("library-book");
+        el.innerHTML = `
+            <img src="${book.imgUrl}" alt="">
+            <div class="library-info">
+                <p>Author: ${book.author}</p>
+                <p>Title: ${book.title}</p>
+                <p>Publisher: ${book.publisher}</p>
+                <p>Pages: ${book.pageNr}</p>
+            </div>
+            <div class="library-gernes">
+                <p>Gernes:</p>
+                <div>
+                    <span>${book.gerne[0]}</span>
+                    <span>${book.gerne[1]}</span>
+                    <span>${book.gerne[2]}</span>
+                </div>
+            </div>
+            <img src="Images/remove (1).png" alt="">
+        `;
+        return el;
     }
 }
 
