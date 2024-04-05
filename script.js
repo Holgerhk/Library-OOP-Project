@@ -1,7 +1,9 @@
-// class BookItem handle single item
-// class BookList handle list of books
-// class Library handle the library
-// test
+let libraryIdx = 0;
+const libraryBtn = document.querySelector(".library-btn");
+libraryBtn.lastElementChild.firstElementChild.innerText = libraryIdx;
+const blurContainer = document.querySelector(".blur");
+
+
 const bookContainer = document.querySelector(".book-container");
 class BookItem {
     constructor(author, title, gerne, pageNr, publisher, imgUrl, backColor, id) {
@@ -42,7 +44,9 @@ class BookItem {
     }
 
     addToLibrary() {
-        console.log(this.id);
+        libraryIdx = libraryIdx + 1;
+        libraryBtn.lastElementChild.firstElementChild.innerText = libraryIdx;
+        bookList.loanBooks.push(this.id)
     }
 }
 
@@ -147,6 +151,15 @@ class BookList {
         });
         return str;
     }
+
+    loanBooks = [];
+
+    openLibrary() {
+        console.log(bookList.loanBooks);
+        if (!blur.classList.contains("active")) {
+            blur.className = "active";
+        }
+    }
 }
 
 
@@ -159,7 +172,9 @@ document.querySelectorAll(".book").forEach(book => {
 });
 
 bookList.books.forEach(book => {
-    document.querySelector("#book" + book.id).addEventListener("click", book.addToLibrary.bind(book));
+    document.querySelector("#book" + book.id).addEventListener("click", book.addToLibrary.bind(book), { once: true });
 
 });
+
+libraryBtn.addEventListener("click", bookList.openLibrary);
 // onload="this.style.height = (400 - this.parentElement.previousElementSibling.getBoundingClientRect().height) + 'px'"

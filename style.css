@@ -155,8 +155,13 @@ body {
 
 .blur {
     backdrop-filter: blur(5px);
+    display: none;
     height: 100%;
     width: 100%;
     position: absolute;
     z-index: 3;
+}
+
+.blur.active {
+    display: block;
 }
