@@ -5,7 +5,6 @@ const blurContainer = document.querySelector(".blur");
 const libraryContainer = document.querySelector(".library-container");
 const libraryBookContainer = document.querySelector(".library-books");
 
-
 const bookContainer = document.querySelector(".book-container");
 class BookItem {
     constructor(author, title, gerne, pageNr, publisher, imgUrl, backColor, id) {
@@ -165,6 +164,24 @@ class BookList {
         bookList.loanBooks.forEach(e => {
             libraryBookContainer.append(bookList.fetchBookHTML(e));
         });
+
+        document.querySelectorAll(".library-book img:last-of-type").forEach(img => {
+            img.addEventListener("click", (e) => {
+                console.log(e);
+                let imgid = img.getAttribute("data-bookId");
+                let bookPosition = -1;
+                for (let i = 0; i < bookList.loanBooks.length; i++) {
+                  const el = bookList.loanBooks[i];
+                   if (el.id == imgid) {
+                        bookPosition = i;
+                   }
+                }
+                bookList.loanBooks.splice(bookPosition, 1);
+                img.parentElement.remove();
+            });
+        });
+
+        
     }
 
     fetchBookHTML(book) {
@@ -186,12 +203,11 @@ class BookList {
                     <span>${book.gerne[2]}</span>
                 </div>
             </div>
-            <img src="Images/remove (1).png" alt="">
+            <img src="Images/remove (1).png" data-bookId="${book.id}" alt="">
         `;
         return el;
     }
 }
-
 
 const bookList = new BookList();
 bookContainer.innerHTML = bookList.render();
