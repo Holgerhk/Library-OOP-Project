@@ -4,6 +4,7 @@ const blurContainer = document.querySelector(".blur");
 const libraryBox = document.querySelector(".library-container");
 const libraryContainer = document.querySelector(".library-books");
 const bookContainer = document.querySelector(".book-container");
+const bottomContainer = document.querySelector(".bottom-container");
 
 // Book Class
 class Book {
@@ -46,10 +47,6 @@ class Book {
         return innerHTML;
     }
 
-    checkHeaderHeight() {
-
-    }
-
     getSingleLibraryBookCard() {
         let innerHTML = `
             <div class="library-book">
@@ -68,7 +65,7 @@ class Book {
                         <span>${this.gerne[0]}</span>
                     </div>
                 </div>
-                <img src="/Images/remove (1).png" alt="">
+                <img src="/Images/remove (1).png" data-bookId="${this.id}" alt="">
             </div>
         `;
         return innerHTML;
@@ -184,15 +181,22 @@ class BookList {
             if (bookId == book.id) {
                 if (!this.libraryArr.includes(book)) {
                     this.libraryArr.push(book);
-                    console.log(this.libraryArr);
                     this.updateLibraryDisplay();
                 }
             }
         });
     }
 
-    removeFromLibrary() {
-
+    removeFromLibrary(bookId) {
+        let bookPosition = -1;
+        for (let i = 0; i < this.libraryArr.length; i++) {
+            const book = this.libraryArr[i];
+            if (book.id == bookId) {
+                bookPosition = i;
+            }
+        }
+        this.libraryArr.splice(bookPosition, 1);
+        this.updateLibraryDisplay();
     }
 
     updateLibraryDisplay() {
@@ -201,6 +205,14 @@ class BookList {
             libraryHTML = libraryHTML + book.getSingleLibraryBookCard();
         });
         libraryContainer.innerHTML = libraryHTML;
+        libraryBtn.lastElementChild.firstElementChild.innerText = this.libraryArr.length;
+        bottomContainer.firstElementChild.innerText = "Total Books: " + this.libraryArr.length;
+        document.querySelectorAll(".library-book img:last-of-type").forEach(icon => {
+            icon.addEventListener("click", () => {
+                let bookId = icon.getAttribute("data-bookId");
+                this.removeFromLibrary(bookId);
+            });
+        });
     }
 }
 
