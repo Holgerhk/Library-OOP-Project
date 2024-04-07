@@ -74,6 +74,11 @@ class Book {
 
 // BookList Class
 class BookList {
+    constructor(libraryContainer, libraryBtn, bottomContainer) {
+        this.library = libraryContainer;
+        this.btn = libraryBtn;
+        this.bottom = bottomContainer;
+    }
     booksArr = [
         new Book(
             "Andrzej Sapkowski",
@@ -204,9 +209,9 @@ class BookList {
         this.libraryArr.forEach(book => {
             libraryHTML = libraryHTML + book.getSingleLibraryBookCard();
         });
-        libraryContainer.innerHTML = libraryHTML;
-        libraryBtn.lastElementChild.firstElementChild.innerText = this.libraryArr.length;
-        bottomContainer.firstElementChild.innerText = "Total Books: " + this.libraryArr.length;
+        this.library.innerHTML = libraryHTML;
+        this.btn.lastElementChild.firstElementChild.innerText = this.libraryArr.length;
+        this.bottom.firstElementChild.innerText = "Total Books: " + this.libraryArr.length;
         document.querySelectorAll(".library-book img:last-of-type").forEach(icon => {
             icon.addEventListener("click", () => {
                 let bookId = icon.getAttribute("data-bookId");
@@ -217,7 +222,7 @@ class BookList {
 }
 
 // Dom Actions
-const bookList = new BookList();
+const bookList = new BookList(libraryContainer, libraryBtn, bottomContainer);
 bookContainer.innerHTML = bookList.getAllBookCards();
 libraryBtn.addEventListener("click", () => {
     if (libraryBox.classList.contains("active")) {
