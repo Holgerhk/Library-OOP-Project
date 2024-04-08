@@ -19,7 +19,7 @@ class Book {
         this.id = id;
     }
 
-    getSingleBookCard() {
+    getSingleExploreBookCard() {
         let innerHTML = ""
         innerHTML = `
         <div id="book${this.id}" class="book" style="background-color: #${this.bg_Color}; box-shadow: 10px 10px 30px 5px #${this.bg_Color};">
@@ -176,7 +176,7 @@ class BookList {
     getAllBookCards() {
         let bookHTML = "";
         this.booksArr.forEach(book => {
-            bookHTML = bookHTML + book.getSingleBookCard();
+            bookHTML = bookHTML + book.getSingleExploreBookCard();
         });
         return bookHTML;
     }
