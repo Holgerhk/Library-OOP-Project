@@ -305,29 +305,140 @@ body {
 
 .detail-container {
     width: 1200px;
-    background-color: #564E87;
+    background-color: #E05A5A;
     position: absolute;
     top: 100px;
-    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
 }
 
-.book-detail-container {
+/* top-container */
+
+.top-container {
     display: flex;
+    max-height: 800px;
 }
+
+/* left-container */
 
 .left-side-container {
-    background-color: #E05A5A;
-}
-
-.left-side-container p {
-    margin: 0;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .left-side-container img {
-    height: 500px;
     border-radius: 10px;
+    height: 500px;
 }
 
-.right-side-container {
+/* middle-container */
+
+.middle-container {
     background-color: aqua;
+}
+
+.middle-container h2 {
+    margin: 30px 0 0 0;
+    font-size: 36px;
+    font-weight: 400;
+    color: #fff;
+}
+
+.middle-container h4 {
+    font-size: 22px;
+    font-weight: 400;
+    margin: 10px 0 0 0;
+    color: #fff;
+}
+
+/* rating system container */
+
+.rating-container {
+    display: flex;
+    margin-top: 15px;
+}
+
+.star-container img {
+    width: 197px;
+}
+
+.based-container {
+    background-color: #fff;
+    height: 45px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;   
+    padding: 0 10px 0 10px;
+    margin-left: 10px;
+}
+
+.based-container p:first-of-type {
+    margin: 0;
+    font-size: 20px;
+}
+
+.based-container p:last-of-type {
+    margin: 0 0 0 10px;
+    font-size: 12px;
+    text-align: center;
+}
+/**/
+.resume {
+    width: 600px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.resume p {
+    margin: 20px 0 0 0;
+}
+
+.buy-container {
+    display: flex;
+    margin-top: 30px;
+}
+
+.buy-btn {
+    height: 45px;
+    background-color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    padding: 0 10px 0 10px;
+}
+
+.buy-container div {
+    width: 191px;
+    height: 45px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.buy-container div p {
+    margin: 0;
+}
+
+/* right-container */
+
+.right-side-container p {
+ margin: 0;
+}
+
+/* review-container */
+
+.review-container {
+    width: 100%;
+    height: 40px;
+    background-color: #564E87;
+    margin-top: 20px;
+    border-radius: 10px;
 }
