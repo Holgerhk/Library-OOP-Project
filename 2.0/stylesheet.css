@@ -319,6 +319,7 @@ body {
 .top-container {
     display: flex;
     max-height: 800px;
+    justify-content: space-between;
 }
 
 /* left-container */
@@ -335,10 +336,6 @@ body {
 }
 
 /* middle-container */
-
-.middle-container {
-    background-color: aqua;
-}
 
 .middle-container h2 {
     margin: 30px 0 0 0;
@@ -429,8 +426,30 @@ body {
 
 /* right-container */
 
+.right-side-container {
+    max-width: fit-content;
+    margin: 40px 20px 0 0;
+}
+
 .right-side-container p {
- margin: 0;
+    margin: 0;
+    font-size: 20px;
+    color: #fff;
+}
+
+.right-side-container span {
+    font-size: 20px;
+    padding: 5px 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    max-width: fit-content;
+    color: #E05A5A;
+}
+
+.right-side-container div {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
 }
 
 /* review-container */
