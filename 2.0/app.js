@@ -5,6 +5,7 @@ const libraryBox = document.querySelector(".library-container");
 const libraryContainer = document.querySelector(".library-books");
 const bookContainer = document.querySelector(".book-container");
 const bottomContainer = document.querySelector(".bottom-container");
+const detailContaienr = document.querySelector(".detail-container");
 
 // Book Class
 class Book {
@@ -66,6 +67,106 @@ class Book {
                     </div>
                 </div>
                 <img src="/Images/remove (1).png" data-bookId="${this.id}" alt="">
+            </div>
+        `;
+        return innerHTML;
+    }
+
+    getDetailBookCard() {
+        let innerHTML = "";
+        innerHTML = `
+            <div class="top-container">
+            <div class="left-side-container">
+                <img src="/Images/assassins apprentice.jpg" alt="">
+            </div>
+    
+            <div class="middle-container">
+                <h2>Assassin's Apprentice</h2>
+                <h4>Robin Hobb</h4>
+    
+                <div class="rating-container">
+                    <div class="star-container">
+                        <img src="/Images/star systen.png" alt="">
+                    </div>
+                    <div class="based-container">
+                        <p>4.18</p>
+                        <p>Based on <br> 325 ratings</p>
+                    </div>
+                </div>
+    
+                <div class="resume">
+                    <p>In a faraway land where members of the royal family are named for the virtues they embody, one young boy will become a walking enigma.
+                        <br>
+                        <br>
+                    Born on the wrong side of the sheets, Fitz, son of Chivalry Farseer, is a royal bastard, cast out into the world, friendless and lonely. Only his magical link with animals - the old art known as the Wit - gives him solace and companionship. But the Wit, if used too often, is a perilous magic, and one abhorred by the nobility.
+                        <br>
+                        <br>
+                    So when Fitz is finally adopted into the royal household, he must give up his old ways and embrace a new life of weaponry, scribing, courtly manners; and how to kill a man secretly, as he trains to become a royal assassin.</p>
+                </div>
+                <div class="buy-container">
+                    <button class="buy-btn">Buy: Assassin's Apprentice</button>
+                    <div>
+                        <p>Saxo.com | Paperback</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="right-side-container">
+                <p>Pages: 400</p>
+                <p style="margin-top: 30px;">Publisher: Gollancz</p>
+                <p style="margin-top: 30px;">Gernes:</p>
+                <div>
+                    <span>Fantasy</span>
+                    <span style="margin-top: 10px;">High Fantasy</span>
+                    <span style="margin-top: 10px;">Fiction</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="review-container">
+            <div class="overall-review-box">
+                <h4>Reveiws and ratings</h4>
+                <div class="score-container">
+                    <h1>4.18</h1>
+                    <div>
+                        <div>
+                            <div class="star-slider"></div>
+                            <img src="/Images/medium star.png" alt="">
+                        </div>
+                        <small>Based on 325 ratings</small>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <div class="slider-box">
+                        <div>
+                            <p>Story</p>
+                            <p>4.1</p>
+                        </div>
+                        <div class="slider-grey">
+                            <div class="slider story"></div>
+                        </div>
+                    </div>
+
+                    <div class="slider-box">
+                        <div>
+                            <p>Character</p>
+                            <p>4.5</p>
+                        </div>
+                        <div class="slider-grey">
+                            <div class="slider char"></div>
+                        </div>
+                    </div>
+
+                    <div class="slider-box">
+                        <div>
+                            <p>Tone</p>
+                            <p>2.9</p>
+                        </div>
+                        <div class="slider-grey">
+                            <div class="slider tone"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         `;
         return innerHTML;
@@ -219,6 +320,14 @@ class BookList {
             });
         });
     }
+
+    controlDetailBookCard(bookId, container) {
+        this.booksArr.forEach(book => {
+            if (book.id == bookId) {
+                container.innerHTML = book.getDetailBookCard();
+            }
+        });
+    }
 }
 
 // Dom Actions
@@ -238,5 +347,12 @@ document.querySelectorAll(".img-container button").forEach(btn => {
     btn.addEventListener("click", () => {
         let bookId = btn.getAttribute("data-bookId");
         bookList.addToLibrary(bookId);
+    });
+});
+
+bookContainer.querySelectorAll(".book img").forEach(book => {
+    let imgId = book.nextElementSibling.getAttribute("data-bookId");
+    book.addEventListener("click", () => {
+        bookList.controlDetailBookCard(imgId, detailContaienr);
     });
 });
