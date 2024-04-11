@@ -1,0 +1,180 @@
+.review-container {
+    width: 100%;
+    background-color: #564E87;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 0 15px 15px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.overall-review-box {
+    height: 333px;
+    width: 366px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-top: 15px;
+    padding: 53px 19px 0 19px;
+}
+
+.overall-review-box h4 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.overall-review-box h1 {
+    margin: 0 10px 0 0;
+    font-size: 48px;
+    font-weight: 400;
+}
+
+.overall-review-box small {
+    margin: 0 0 0 3px;
+    font-size: 11px;
+    color: #707070;
+}
+
+.score-container {
+    display: flex;
+    align-items: center;
+}
+
+.score-container div div {
+    background-color: #10DAA9;
+    height: 25px;
+    width: 133px;
+    position: relative;
+}
+
+.star-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 133px;
+}
+
+.score-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 133px;
+}
+
+.slider-container {
+    border-top: 0.5px solid #E8E8E8;
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+}
+
+.slider-box {
+    margin-top: 20px;
+}
+
+.slider-box p {
+    margin: 0;
+}
+
+.slider-box div:first-of-type {
+    display: flex;
+    justify-content: space-between;
+}
+
+.slider-grey {
+    width: 100%;
+    background-color: #E8E8E8;
+    height: 3px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3px;
+    border-radius: 10px;
+}
+
+.story {
+    background-color: #FD9F1E;
+    width: 82%;
+}
+
+.char {
+    background-color: #10DAA9;
+    width: 90%;
+}
+
+.tone {
+    background-color: #DA3612;
+    width: 45%;
+}
+
+/* review-box */
+
+.review-box {
+    height: 333px;
+    width: 366px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-top: 15px;
+    padding: 20px 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-box h2 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.review-box h4 {
+    margin: 10px 0 0 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.review-box p {
+    margin: 5px 0 0 0;
+    font-size: 11px;
+    line-height: 15px;
+}
+
+.review-box textarea {
+    width: 100%;
+    background-color: #b0b0b0;
+    border: none;
+    border-radius: 10px;
+    resize: none;
+    height: 100%;
+    margin-top: 10px;
+}
+
+.review-box div {
+    height: 14px;
+    width: 70px;
+    position: relative;
+}
+
+.review-box div div {
+    height: 14px;
+    width: 70px;
+    background-color: #10DAA9;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.review-box img {
+    height: 14px;
+    width: 70px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

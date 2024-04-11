@@ -451,13 +451,3 @@ body {
     margin-top: 20px;
     flex-direction: column;
 }
-
-/* review-container */
-
-.review-container {
-    width: 100%;
-    height: 40px;
-    background-color: #564E87;
-    margin-top: 20px;
-    border-radius: 10px;
-}
