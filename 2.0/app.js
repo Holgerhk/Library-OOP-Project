@@ -77,12 +77,12 @@ class Book {
         innerHTML = `
             <div class="top-container">
             <div class="left-side-container">
-                <img src="/Images/assassins apprentice.jpg" alt="">
+                <img src="${this.imgUrl}" alt="">
             </div>
     
             <div class="middle-container">
-                <h2>Assassin's Apprentice</h2>
-                <h4>Robin Hobb</h4>
+                <h2>${this.title}</h2>
+                <h4>${this.author}</h4>
     
                 <div class="rating-container">
                     <div class="star-container">
@@ -104,7 +104,7 @@ class Book {
                     So when Fitz is finally adopted into the royal household, he must give up his old ways and embrace a new life of weaponry, scribing, courtly manners; and how to kill a man secretly, as he trains to become a royal assassin.</p>
                 </div>
                 <div class="buy-container">
-                    <button class="buy-btn">Buy: Assassin's Apprentice</button>
+                    <button class="buy-btn">Buy: ${this.title}</button>
                     <div>
                         <p>Saxo.com | Paperback</p>
                     </div>
@@ -112,13 +112,13 @@ class Book {
             </div>
     
             <div class="right-side-container">
-                <p>Pages: 400</p>
-                <p style="margin-top: 30px;">Publisher: Gollancz</p>
+                <p>Pages: ${this.pageNr}</p>
+                <p style="margin-top: 30px;">Publisher: ${this.publisher}</p>
                 <p style="margin-top: 30px;">Gernes:</p>
                 <div>
-                    <span>Fantasy</span>
-                    <span style="margin-top: 10px;">High Fantasy</span>
-                    <span style="margin-top: 10px;">Fiction</span>
+                    <span>${this.gerne[0]}</span>
+                    <span style="margin-top: 10px;">${this.gerne[1]}</span>
+                    <span style="margin-top: 10px;">${this.gerne[2]}</span>
                 </div>
             </div>
         </div>
@@ -356,3 +356,16 @@ bookContainer.querySelectorAll(".book img").forEach(book => {
         bookList.controlDetailBookCard(imgId, detailContaienr);
     });
 });
+
+
+// fetch("https://randomuser.me/api/?results=10")
+//    .then(res => res.json())
+//    .then(data => {
+//         for (let i = 0; i < data.results.length; i++) {
+//             console.log(data.results[i]);
+//         }
+//     });
+
+// fetch("https://loripsum.net/api")
+//     .then(res => res.json())
+//     .then(data => console.log(data))
