@@ -7,6 +7,46 @@ const bookContainer = document.querySelector(".book-container");
 const bottomContainer = document.querySelector(".bottom-container");
 const detailContaienr = document.querySelector(".detail-container");
 
+class Review {
+    constructor(storyRating, charRating, toneRating, user, mainText, header, date) {
+        this.storyRating = storyRating;
+        this.charRating = charRating;
+        this.toneRating = toneRating;
+        this.user = user;
+        this.mainText = mainText;
+        this.header = header;
+        this.date = date;
+    }
+
+    getReviewBoxes() {
+
+    }
+}
+
+class ReviewList {
+    reviewArr = [];
+
+    populateList() {
+        this.reviewArr = getReviewData();
+    }
+
+    getNumberOfReviews() {
+
+    }
+
+    getAverageUserRating() {
+
+    }
+
+    getOverallRatingBox() {
+
+    }
+
+    getMiniOverallRatings() {
+
+    }
+}
+
 // Book Class
 class Book {
     constructor(author, title, gerne, pageNr, publisher, imgUrl, bg_Color, id) {
@@ -168,17 +208,21 @@ class Book {
                     </div>
                 </div>
             </div>
+        </div>
         `;
+        
         return innerHTML;
     }
 }
 
 // BookList Class
 class BookList {
-    constructor(libraryContainer, libraryBtn, bottomContainer) {
+    constructor(libraryContainer, libraryBtn, bottomContainer, detailContaienr, bookContainer) {
         this.library = libraryContainer;
         this.btn = libraryBtn;
         this.bottom = bottomContainer;
+        this.detCon = detailContaienr;
+        this.bookCon = bookContainer;
     }
     booksArr = [
         new Book(
@@ -321,17 +365,20 @@ class BookList {
         });
     }
 
-    controlDetailBookCard(bookId, container) {
+    controlDetailBookCard(bookId) {
         this.booksArr.forEach(book => {
             if (book.id == bookId) {
-                container.innerHTML = book.getDetailBookCard();
+                const reviewList = new ReviewList();
+                reviewList.populateList();
+                console.log(bookId);
+                this.detCon.innerHTML = book.getDetailBookCard();
             }
         });
     }
 }
 
 // Dom Actions
-const bookList = new BookList(libraryContainer, libraryBtn, bottomContainer);
+const bookList = new BookList(libraryContainer, libraryBtn, bottomContainer, detailContaienr, bookContainer);
 bookContainer.innerHTML = bookList.getAllBookCards();
 libraryBtn.addEventListener("click", () => {
     if (libraryBox.classList.contains("active")) {
@@ -353,19 +400,83 @@ document.querySelectorAll(".img-container button").forEach(btn => {
 bookContainer.querySelectorAll(".book img").forEach(book => {
     let imgId = book.nextElementSibling.getAttribute("data-bookId");
     book.addEventListener("click", () => {
-        bookList.controlDetailBookCard(imgId, detailContaienr);
+        bookList.controlDetailBookCard(imgId);
+        if (detailContaienr.style.display = "none") {
+            detailContaienr.style.display = "block";
+            bookContainer.style.display = "none";
+        }
     });
 });
 
+function getReviewData() {
+    const minCeiled = Math.ceil(30);
+    const maxFloored = Math.floor(50);
+    let randomNr = Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
+    let arr = [];
+    console.log(randomNr);
 
-// fetch("https://randomuser.me/api/?results=10")
-//    .then(res => res.json())
-//    .then(data => {
-//         for (let i = 0; i < data.results.length; i++) {
-//             console.log(data.results[i]);
-//         }
-//     });
+    for (let i = 0; i < randomNr; i++) {
+        let storyRating = getRating();
+        let charRating = getRating();
+        let toneRating = getRating();
+        let user = getUser();
+        let main = getMainText();
+        let header = getHeader();
+        let date = getDate();
 
-// fetch("https://loripsum.net/api")
-//     .then(res => res.json())
-//     .then(data => console.log(data))
+        let obj = new Review(
+            storyRating,
+            charRating,
+            toneRating,
+            user,
+            main,
+            header,
+            date
+        );
+        console.log(obj);
+        arr = arr + obj;
+    }
+    return arr;
+}
+
+getReviewData();
+
+function getRating() {
+    const minCeiled = Math.ceil(1);
+    const maxFloored = Math.floor(5);
+    let randomNr = Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
+    return randomNr;
+}
+
+function getUser() {
+    let user;
+    fetch("https://randomuser.me/api")
+    .then(res => res.json())
+    .then(data => {
+        user = data;
+    });
+    return user;
+}
+
+function getMainText() {
+    
+}
+
+function getHeader() {
+    
+}
+
+function getDate() {
+    
+}
+
+async function Test() {
+    const response = await fetch("https://randomuser.me/api");
+    const movies = await response.json();
+    console.log(movies);
+    return movies;
+  }
+console.log(Test());
+// fetch("https://loripsum.net/api/1")
+//     .then(res => res.text())
+//    .then(data => console.log(data))
