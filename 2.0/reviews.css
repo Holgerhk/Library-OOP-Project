@@ -42,18 +42,26 @@
 }
 
 .score-container div div {
-    background-color: #10DAA9;
     height: 25px;
     width: 133px;
     position: relative;
 }
 
-.star-slider {
+.star-slider-bg {
+    background-color: #dbdbdb;
     position: absolute;
     top: 0;
     left: 0;
     height: 25px;
-    width: 133px;
+    width: 100%;
+}
+
+.star-slider {
+    background-color: #10DAA9;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    height: 25px;
 }
 
 .score-container img {

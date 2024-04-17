@@ -18,8 +18,20 @@ class Review {
         this.date = date;
     }
 
-    getReviewBoxes() {
-
+    getReviewBox() {
+        let HTML = `
+            <div class="review-box">
+                <h2>${this.user}</h2>
+                <div>
+                    <div></div>
+                    <img src="/Images/medium star.png" alt="">
+                </div>
+                <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h4>
+                <p>Nulla id egestas neque, vel aliquet enim. Fusce egestas, elit at venenatis scelerisque, ex velit fermentum lectus, malesuada tincidunt ligula diam ac mi. Fusce pellentesque iaculis arcu, quis eleifend justo luctus nec. Sed feugiat ac ligula a sodales. Quisque dapibus vehicula aliquet. Sed quam dui, porttitor vel sapien ac, suscipit sollicitudin nunc</p>
+                <textarea name="comment" id="comment" placeholder="comment..."></textarea>
+            </div>
+        `;
+        return HTML;
     }
 }
 
@@ -28,22 +40,102 @@ class ReviewList {
 
     populateList() {
         this.reviewArr = getReviewData();
+        console.log(this.reviewArr);
     }
 
-    getNumberOfReviews() {
-
+    loopRatings(rating) {
+        let sum = 0;
+        for (let i = 0; i < this.reviewArr.length; i++) {
+          sum += this.reviewArr[i][rating];
+        }
+        return sum / this.reviewArr.length;
     }
 
     getAverageUserRating() {
+       let story = Math.round(this.loopRatings("storyRating") * 10) / 10;
+       let char = Math.round(this.loopRatings("charRating") * 10) / 10;
+       let tone = Math.round(this.loopRatings("toneRating") * 10) / 10;
 
+       let total = Math.round(((story + char + tone) / 3) * 10) / 10;
+       return [story, char, tone, total];
     }
 
     getOverallRatingBox() {
+        let average = this.getAverageUserRating();
+        let numberOf = this.reviewArr.length;
+        let box = `
+             <div class="overall-review-box">
+                <h4>Reveiws and ratings</h4>
+                <div class="score-container">
+                    <h1>${Math.round(average[3] * 10) / 10}</h1>
+                    <div>
+                        <div>
+                            <div class="star-slider-bg"></div>
+                            <div class="star-slider" style="width: ${(average[3] + average[3]) * 10}%;"></div>
+                            <img src="/Images/medium star.png" alt="">
+                        </div>
+                        <small>Based on ${numberOf} ratings</small>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <div class="slider-box">
+                        <div>
+                            <p>Story</p>
+                            <p>${average[0]}</p>
+                        </div>
+                        <div class="slider-grey">
+                            <div class="slider story" style="width: ${(average[0] + average[0]) * 10}%;"></div>
+                        </div>
+                    </div>
 
+                    <div class="slider-box">
+                        <div>
+                            <p>Character</p>
+                            <p>${average[1]}</p>
+                        </div>
+                        <div class="slider-grey">
+                            <div class="slider char" style="width: ${(average[1] + average[1]) * 10}%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="slider-box">
+                        <div>
+                            <p>Tone</p>
+                            <p>${average[2]}</p>
+                        </div>
+                        <div class="slider-grey">
+                            <div class="slider tone" style="width: ${(average[2] + average[2]) * 10}%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        return box;
     }
 
     getMiniOverallRatings() {
+        let average = this.getAverageUserRating();
+        let numberOf = this.reviewArr.length;
+        let HTML = `
+            <div class="star-container">
+                <img src="/Images/star systen.png" alt="">
+                <div></div>
+            </div>
+            <div class="based-container">
+                <p>${average[3]}</p>
+                <p>Based on <br> ${numberOf} ratings</p>
+            </div>
+        `;
+        return HTML;
+    }
 
+    getAllReviewBoxes() {
+        let str = "";
+        this.reviewArr.forEach(review => {
+            let singleStr = review.getReviewBox();
+            str = str + singleStr;
+        });
+        return str;
     }
 }
 
@@ -113,6 +205,9 @@ class Book {
     }
 
     getDetailBookCard() {
+        const reviewList = new ReviewList();
+        reviewList.populateList();
+        console.log(reviewList.getAverageUserRating());
         let innerHTML = "";
         innerHTML = `
             <div class="top-container">
@@ -125,13 +220,7 @@ class Book {
                 <h4>${this.author}</h4>
     
                 <div class="rating-container">
-                    <div class="star-container">
-                        <img src="/Images/star systen.png" alt="">
-                    </div>
-                    <div class="based-container">
-                        <p>4.18</p>
-                        <p>Based on <br> 325 ratings</p>
-                    </div>
+                    ${reviewList.getMiniOverallRatings()}
                 </div>
     
                 <div class="resume">
@@ -164,50 +253,8 @@ class Book {
         </div>
         
         <div class="review-container">
-            <div class="overall-review-box">
-                <h4>Reveiws and ratings</h4>
-                <div class="score-container">
-                    <h1>4.18</h1>
-                    <div>
-                        <div>
-                            <div class="star-slider"></div>
-                            <img src="/Images/medium star.png" alt="">
-                        </div>
-                        <small>Based on 325 ratings</small>
-                    </div>
-                </div>
-                <div class="slider-container">
-                    <div class="slider-box">
-                        <div>
-                            <p>Story</p>
-                            <p>4.1</p>
-                        </div>
-                        <div class="slider-grey">
-                            <div class="slider story"></div>
-                        </div>
-                    </div>
-
-                    <div class="slider-box">
-                        <div>
-                            <p>Character</p>
-                            <p>4.5</p>
-                        </div>
-                        <div class="slider-grey">
-                            <div class="slider char"></div>
-                        </div>
-                    </div>
-
-                    <div class="slider-box">
-                        <div>
-                            <p>Tone</p>
-                            <p>2.9</p>
-                        </div>
-                        <div class="slider-grey">
-                            <div class="slider tone"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           ${reviewList.getOverallRatingBox()}
+           ${reviewList.getAllReviewBoxes()}
         </div>
         `;
         
@@ -368,9 +415,6 @@ class BookList {
     controlDetailBookCard(bookId) {
         this.booksArr.forEach(book => {
             if (book.id == bookId) {
-                const reviewList = new ReviewList();
-                reviewList.populateList();
-                console.log(bookId);
                 this.detCon.innerHTML = book.getDetailBookCard();
             }
         });
@@ -413,7 +457,6 @@ function getReviewData() {
     const maxFloored = Math.floor(50);
     let randomNr = Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
     let arr = [];
-    console.log(randomNr);
 
     for (let i = 0; i < randomNr; i++) {
         let storyRating = getRating();
@@ -433,13 +476,11 @@ function getReviewData() {
             header,
             date
         );
-        console.log(obj);
-        arr = arr + obj;
+        // console.log(obj);
+        arr.push(obj);
     }
     return arr;
 }
-
-getReviewData();
 
 function getRating() {
     const minCeiled = Math.ceil(1);
@@ -448,35 +489,41 @@ function getRating() {
     return randomNr;
 }
 
-function getUser() {
-    let user;
-    fetch("https://randomuser.me/api")
-    .then(res => res.json())
-    .then(data => {
-        user = data;
-    });
-    return user;
+async function getUser() {
+    const response = await fetch("https://randomuser.me/api");
+    const movies = await response.json();
+    return movies.results[0].name.first + " " + movies.results[0].name.last;
 }
 
-function getMainText() {
-    
+async function getMainText() {
+    const response = await fetch("https://loripsum.net/api/1/short/plaintext");
+    const movies = await response.text();
+    return movies;
 }
 
 function getHeader() {
-    
+    return "ogahoig ajga0jgajg ga+jkg+o gajgiag";
 }
 
 function getDate() {
-    
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Dec"];
+    let min = 1;
+    let max = 31;
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    let randomNr = Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
+    let randomMonth = Math.floor(Math.random() * months.length);
+    return randomNr + " " + months[randomMonth];
 }
 
-async function Test() {
-    const response = await fetch("https://randomuser.me/api");
-    const movies = await response.json();
-    console.log(movies);
-    return movies;
-  }
-console.log(Test());
+// async function Test() {
+//     const response = await fetch("https://randomuser.me/api");
+//     const movies = await response.json();
+//     console.log(movies);
+//     return movies;
+//   }
+// console.log(Test());
+
 // fetch("https://loripsum.net/api/1")
 //     .then(res => res.text())
 //    .then(data => console.log(data))

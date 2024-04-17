@@ -358,8 +358,23 @@ body {
     margin-top: 15px;
 }
 
+.star-container {
+    position: relative;
+}
+
 .star-container img {
     width: 197px;
+    background-color: #e2e2e2;
+    border-radius: 10px;
+}
+
+.star-container div {
+    position: absolute !important;
+    top: 0px;
+    left: 0px;
+    background-color: #E05A5A;
+    height: 100%;
+    width: 50%;
 }
 
 .based-container {
